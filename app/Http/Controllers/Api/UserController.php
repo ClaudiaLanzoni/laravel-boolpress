@@ -17,9 +17,8 @@ class UserController extends Controller
     public function index()
     {
         $posts = Post::all();
-        $postsCollection = response()->json($posts);
-        //return var_dump($post);
-        return view('admin.index', $postsCollection);
+        return response()->json($posts);
+
     }
 
     /**
