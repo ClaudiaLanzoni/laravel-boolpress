@@ -23,3 +23,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // });
 
 Route::get('/index', 'Api\UserController@index');
+
+Route::resource('posts', PostController::class);

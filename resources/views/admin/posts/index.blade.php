@@ -16,6 +16,7 @@
                     <h4>{{$post->author}}</h4>
                     <p>{{$post->post_topic}}</p>
                     <p>{{$post->post_date}}</p>
+                    <p>{{$post->category->name}}</p>
 
                 <div class="d-flex">
                     <button type="button" class="btn btn-primary text-center">

@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\Models\Post; //aggiunta
+use App\Models\Category; //aggiunta
 
 use Faker\Generator as Faker; //aggiunta
 
@@ -15,6 +16,12 @@ class PostsTableSeeder extends Seeder
      */
     public function run(Faker $faker) //aggiunti
     {
+
+
+        // Sto creando un array di tutti e soli gli id di category
+        $category_ids = Category::pluck('id')->toArray();
+
+
         for ($i = 0; $i < 40; $i++) {
 
             $newPost = new Post();
@@ -25,6 +32,7 @@ class PostsTableSeeder extends Seeder
             $newPost->post_content = $faker->paragraphs(6, true);
             $newPost->post_date = $faker->dateTime();
             $newPost->url = $faker->imageUrl(400, 300);
+            $newPost->category_id = Arr::random($category_ids);
 
             $newPost->save();
         }
