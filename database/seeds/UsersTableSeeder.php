@@ -14,9 +14,9 @@ class UsersTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $user = new User();
-        $user->name = 'claudiaz';
-        $user->email = 'claudiaz@gmanzo.com';
-        $user->password = bcrypt('claudia1234');
+        $user->name = 'claudiazz';
+        $user->email = 'claudiazz@gmanzo.com';
+        $user->password = bcrypt('claudia12345');
         $user->save();
         
         for ($i= 0 ; $i<16 ; $i++){

@@ -14,6 +14,8 @@ class TagsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        $tagIds = Tag::pluck('id')->toArray();
+
         $tagNames = ['#frontie', '#backie', '#aihie', '#kitschy', '#finnicky', '#funnily', 
         '#feminist', '#realMenAreFeminists'];
 

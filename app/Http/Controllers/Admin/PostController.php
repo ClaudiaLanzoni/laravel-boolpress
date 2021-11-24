@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Category;
+use App\Models\Tag;
+
 
 class PostController extends Controller
 {
@@ -16,7 +19,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.posts.index', compact('posts'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('admin.posts.index', compact('posts', 'categories', 'tags'));
     }
 
      /**
@@ -26,7 +31,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        $post = new Post();
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return view('admin.posts.create', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -40,16 +49,23 @@ class PostController extends Controller
     //che è tutto ( all() ) ciò che viene richiesto da una chiamata post (perchè siamo in store)
     //Request è oggetto, $request è la classe
     {
-        $data = $request->all();
         
+        $data = $request->all();
+        // $data['post_date'] = Carbon::now();
+        // $data['user_id'] = Auth::user()->id;
+        
+
         $post = new Post();
-        //metodo manuale
-        //$post->title = $data['title'];
+        $post->fill($data);
+        $post->save();
 
-        $comic = Post::create($data);
-        $comic->save();
+        // verifico che esista una chiave tags in data e aggiungo tutti i tag selezionati al post appena salvato
+        // $data['tags'] = [1,3];
+        // $data['tags'] = null | undefined;
+        
+        if( array_key_exists('tags', $data) ) $post->tags()->sync($data['tags']);
 
-        return redirect()->route('admin.posts.show', $post);
+        return redirect()->route('admin.posts.show', compact('post'));
     }
 
     /**
@@ -72,7 +88,13 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        $tagIds = $post->tags->pluck('id')->toArray();
+
+        return view("admin.posts.edit", compact('post', 'categories', 'tags', 'tagIds'));
+
     }
 
     /**

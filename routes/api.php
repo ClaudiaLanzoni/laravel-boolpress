@@ -18,10 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('/index', function() {
-//     return view('admin.index');
+
+// Route::namespace('Api')->group(function(){
+//     Route::resource('posts', 'UserController');
 // });
 
 Route::get('/index', 'Api\UserController@index');
-
-Route::resource('posts', PostController::class);
+Route::get('/show/{id}', 'Api\UserController@show');
+//Route::get('/delete/{id}', 'Api\UserController@destroy');

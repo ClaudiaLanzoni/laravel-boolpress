@@ -16,15 +16,10 @@
                 <label for="author">Author</label>
                 <input type="text" id="author" name="author" placeholder="Insert post's author" required>
             </div>
-
-            <div class="m-3">
-                <label for="topic">Topic</label>
-                <input type="text" id="topic" name="topic" placeholder="Insert post's topic" required>
-            </div>
             
             <div class="m-3">
-                <label for="description">Content</label>
-                <textarea type="text" id="description" name="description" placeholder="Insert post's content" required></textarea>
+                <label for="post_content">Content</label>
+                <textarea type="text" id="post_content" name="post_content" placeholder="Insert post's content" required></textarea>
             </div>
         
             <div class="m-3">
@@ -32,9 +27,38 @@
                 <input type="text" id="url" name="url" placeholder="Insert post's image" required>
             </div>
             
-            <button type="reset">Erase</button>
-            <button type="submit">Add</button>
+            <div class="form-group">
+                <label for="category_id">Categoria</label>
+                <select name="category_id" id="category_id">
+                    <option value="{{null}}">Senza categoria</option>
+                    @foreach ($categories as $category)
+                        <option 
+                        @if (old('category_id') == $category->id) selected @endif
+                        value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
+            <div class="form-group">
+                <legend class="h5">Tags</legend>
+                <div class="form-check form-check-inline">    
+
+                    @foreach ($tags as $tag)
+                        <input type="checkbox" class="form-check-input mx-2" id="tag-{{ $tag->id }}" 
+                        value="{{$tag->id}}" name="tags[]" 
+                        {{-- @if (in_array($tag->id, old("tags", $tagIds ? $tagIds : [] ))) checked @endif > --}}
+                        
+                        <label class="form-check-label me-2" for="tag-{{$tag->id}}">{{$tag->name}}</label>    
+                    @endforeach
+                </div>
+            </div>
+            
+            <div class="m-4">
+                <button type="reset">Erase</button>
+                <button type="submit">Add</button>
+            </div>
+            
+        </div>
         </form>
 
     </div>

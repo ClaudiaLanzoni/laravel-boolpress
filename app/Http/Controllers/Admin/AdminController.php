@@ -46,8 +46,8 @@ class AdminController extends Controller
         //metodo manuale
         //$post->title = $data['title'];
 
-        $comic = Post::create($data);
-        $comic->save();
+        $post = Post::create($data);
+        $post->save();
 
         return redirect()->route('admin.posts.show', $post);
     }

@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return response()->json($posts);
+        return response()->json(compact('posts'));
 
     }
 
@@ -40,7 +40,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        return (response()->json(compact('post')));
+        
     }
 
     /**
@@ -63,6 +65,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::destroy($id);
+
+        return response('', 204);
     }
 }

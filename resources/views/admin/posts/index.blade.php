@@ -8,7 +8,8 @@
         </div>
 
         <div class="row d-flex justify-content-between">
-            @foreach ($posts as $post)
+            
+            @forelse ($posts as $post)
             <div class="col-6 mb-5">
                 <a href="{{route('admin.posts.show', $post->id)}}"> 
                     <h2 class="text-uppercase">{{$post->title}}</h2>
@@ -16,7 +17,20 @@
                     <h4>{{$post->author}}</h4>
                     <p>{{$post->post_topic}}</p>
                     <p>{{$post->post_date}}</p>
-                    <p>{{$post->category->name}}</p>
+                    @if ($post->category) 
+                            
+                    <span class="badge badge-secondary my-2">{{$post->category->name}}</span>
+                    
+                    @else --Nessuna categoria-- @endif
+
+                    {{-- @forelse ($post->tags as $tag)
+                                
+                        <span class="bagde badge-pill" style="background-color: {{ $tag->color}} ">
+                            {{$tag->name}}</span>
+                    @empty
+                        Nessun tag
+                    @endforelse --}}
+                    
 
                 <div class="d-flex">
                     <button type="button" class="btn btn-primary text-center">
@@ -34,7 +48,12 @@
                     
             </div>
             
-        @endforeach
+            @empty
+            <div>Non funziona</div>    
+            @endforelse ($posts as $post)
+            
+            
+           
         </div>
         
     </div>

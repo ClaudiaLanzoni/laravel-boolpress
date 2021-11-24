@@ -17,8 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title', 50);
             $table->string('author', 50);
-            $table->string('post_topic', 50);
-            $table->text('post_content');
+            $table->text("post_content");
             $table->date('post_date');
             $table->text('url');
             $table->timestamps();
