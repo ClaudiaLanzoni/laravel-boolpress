@@ -1,6 +1,5 @@
 <template>
     <section id="post-list" class="my-3 p-2">
-        <h2 class="my-3">I miei post:</h2>
         
         <PostCard v-for="post in posts" :key="post.id" :post="post" class="p-2 my-4"/>
 

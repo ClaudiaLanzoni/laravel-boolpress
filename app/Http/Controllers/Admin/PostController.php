@@ -128,5 +128,11 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('admin.posts.index');
+
+        // if ($post->tags) $post->tags()->detach();
+
+        // $post->delete();
+
+        // return redirect()->route('admin.posts.index')->with("deleted_title", $post->title )->with('alert-message', "$post->title è stato eliminato con successo");
     }
 }

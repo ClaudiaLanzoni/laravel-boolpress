@@ -9,7 +9,7 @@
 
         <div class="row d-flex justify-content-between">
             
-            @forelse ($posts as $post)
+            @forelse ($emails as $email)
             <div class="col-6 mb-5">
                 <a href="{{route('admin.posts.show', $post->id)}}"> 
                     <h2 class="text-uppercase">{{$post->title}}</h2>

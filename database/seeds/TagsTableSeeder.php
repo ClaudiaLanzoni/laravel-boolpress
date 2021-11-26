@@ -19,12 +19,18 @@ class TagsTableSeeder extends Seeder
         $tagNames = ['#frontie', '#backie', '#aihie', '#kitschy', '#finnicky', '#funnily', 
         '#feminist', '#realMenAreFeminists'];
 
-        foreach ($tagNames as $name){
+        
+
+        for ($i = 0; $i < 8; $i++) {
+           
             $newTag = new Tag();
-            $newTag->name = $name;
+
+            $newTag->name = $tagNames[array_rand($tagNames)];
+    
             $newTag->color = $faker->hexColor();
 
             $newTag->save();
         }
+            
     }
-}
+    };

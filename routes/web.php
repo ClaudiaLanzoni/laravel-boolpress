@@ -27,8 +27,18 @@ Route::middleware('auth')
     Route::resource('posts', PostController::class);
 });
 
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('emails', EmailController::class)->except(["edit", "update"]);
+
+
+
+
+
+
+
+
 
 Route::get("{any?}", function() {
     return view("guests.home");

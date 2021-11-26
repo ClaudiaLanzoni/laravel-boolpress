@@ -2350,7 +2350,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostList',
@@ -2943,18 +2942,14 @@ var render = function () {
   return _c(
     "section",
     { staticClass: "my-3 p-2", attrs: { id: "post-list" } },
-    [
-      _c("h2", { staticClass: "my-3" }, [_vm._v("I miei post:")]),
-      _vm._v(" "),
-      _vm._l(_vm.posts, function (post) {
-        return _c("PostCard", {
-          key: post.id,
-          staticClass: "p-2 my-4",
-          attrs: { post: post },
-        })
-      }),
-    ],
-    2
+    _vm._l(_vm.posts, function (post) {
+      return _c("PostCard", {
+        key: post.id,
+        staticClass: "p-2 my-4",
+        attrs: { post: post },
+      })
+    }),
+    1
   )
 }
 var staticRenderFns = []
